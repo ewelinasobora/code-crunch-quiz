@@ -8,7 +8,7 @@ const getQuestionTitle = document.getElementById("question-title");
 const getChoices = document.getElementById("choices");
 const getFinalScore = document.getElementById("final-score");
 const getInitials = document.getElementById("initials");
-const getSubmit = document.getElementById("submit");
+const submitButton = document.getElementById("submit");
 const getEndScreen = document.getElementById("end-screen");
 
 const questions = [
@@ -48,6 +48,7 @@ function showQuestions() {
   getQuestions.style.display = "block";
   // function that shows the next question
   function displayQuestion(index) {
+    // it checks if there are no more questions to display
     if (index >= questions.length) {
       displayEndScreen();
       return;
@@ -68,8 +69,11 @@ function showQuestions() {
       // it listens for a click event on the option button
       optionButton.addEventListener("click", function () {
         if (questions[index].options[j] === questions[index].answer) {
+          displayMessage("feedback correct", "Correct!")
           score++;
           localStorage.setItem("score", score);
+        } else {
+          displayMessage("feedback wrong", "Wrong!")
         }
         index++;
         // it resets the choices to ensure that the options for the previous question are not displayed
@@ -113,3 +117,25 @@ function displayEndScreen() {
   getEndScreen.style.display = "block";
   displayFinalScore()
 }
+
+// function that displays the feedback
+function displayMessage(type, message) {
+  getFeedback.textContent = message;
+  getFeedback.setAttribute("class", type);
+}
+
+// listener for the submit button
+submitButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  let initials = getInitials.value;
+
+  // it checks if the initials are empty
+  if (initials === "") {
+    displayMessage("error", "Please enter your initials");
+  } else {
+    displayMessage("success", "Score saved successfully");
+
+    localStorage.setItem("initials", initials);
+  }
+});
