@@ -35,7 +35,7 @@ startQuizButton.addEventListener("click", startQuiz)
 // function that starts the quiz
 function startQuiz() {
   hideStartScreen();
-  // startTimer();
+  startTimer();
   showQuestions();
 
 }
@@ -69,12 +69,12 @@ function showQuestions() {
       // it listens for a click event on the option button
       optionButton.addEventListener("click", function () {
         if (questions[index].options[j] === questions[index].answer) {
-          displayMessage("feedback correct", "Correct!")
+          displayMessage("correct", "Correct!")
           score++;
           localStorage.setItem("score", score);
         } else {
           localStorage.setItem("score", score);
-          displayMessage("feedback wrong", "Wrong!")
+          displayMessage("incorrect", "Wrong!")
         }
         index++;
         // it resets the choices to ensure that the options for the previous question are not displayed
@@ -123,7 +123,14 @@ function displayEndScreen() {
 function displayMessage(type, message) {
   getFeedback.textContent = message;
   getFeedback.setAttribute("class", type);
+  getFeedback.setAttribute("onclick", play(type));
 }
+
+function play(type) {
+  var audio = new Audio("./assets/sfx/" + type + ".wav");
+  audio.play();
+}
+
 
 // listener for the submit button
 submitButton.addEventListener("click", function(event) {
