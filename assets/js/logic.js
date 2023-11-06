@@ -73,6 +73,7 @@ function showQuestions() {
           score++;
           localStorage.setItem("score", score);
         } else {
+          localStorage.setItem("score", score);
           displayMessage("feedback wrong", "Wrong!")
         }
         index++;
