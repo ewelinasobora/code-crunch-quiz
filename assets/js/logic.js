@@ -35,49 +35,75 @@ startQuizButton.addEventListener("click", startQuiz)
 // function that starts the quiz
 function startQuiz() {
   hideStartScreen();
-  startTimer();
+  // startTimer();
   showQuestions();
 
 }
 
 // function that displays the questions and options on the screen
 function showQuestions() {
-  let i = 0;
+  let score = 0;
+  let questionIndex = 0;
 
   getQuestions.style.display = "block";
-  getChoices.innerHTML = "";
-
-  for (let j = 0; j < questions[i].options.length; j++) {
-    getQuestionTitle.textContent = questions[i].question;
-
-    var optionButton = document.createElement("button");
-    optionButton.setAttribute("class", "option");
-    optionButton.textContent = questions[i].options[j];
-    getChoices.appendChild(optionButton);
-  }
-}
-
-// function that hides the start screen and shows the questions
-function hideStartScreen() {
-  getStartScreen.style.display = "none";
-}
-
-// function the starts the timer and displays the end screen
-function startTimer() {
-  let timeLeft = 100;
-  let timeInterval = setInterval(function () {
-    timeLeft--;
-    timer.textContent = timeLeft;
-    if (timeLeft === 0) {
-      clearInterval(timeInterval);
+  // function that shows the next question
+  function displayQuestion(index) {
+    if (index >= questions.length) {
       displayEndScreen();
+      return;
     }
-  }, 1000);
+    // it displays the current question
+    getQuestionTitle.textContent = questions[index].question;
 
+    for (let j = 0; j < questions[index].options.length; j++) {
+      // it creates a new button element for each option
+      let optionButton = document.createElement("button");
+      // it sets the 'option' class for each button
+      optionButton.setAttribute("class", "option");
+      // it sets the text content for each button
+      optionButton.textContent = questions[index].options[j];
+      // it appends the button to the choices div
+      getChoices.appendChild(optionButton);
+
+      // it listens for a click event on the option button
+      optionButton.addEventListener("click", function () {
+        if (questions[index].options[j] === questions[index].answer) {
+          score++;
+          localStorage.setItem("score", score);
+        }
+        index++;
+        // it resets the choices to ensure that the options for the previous question are not displayed
+        getChoices.innerHTML = "";
+        // once the user selects an option, the function displayQuestion is called to display the next question
+        displayQuestion(index);
+      });
+    }
+  }
+  // it calls the displayQuestion function first time to start displaying the questions
+  displayQuestion(questionIndex);
 }
 
-// function that displays the end screen
-function displayEndScreen() {
-  getQuestions.style.display = "none";
-  getEndScreen.style.display = "block";
-}
+  // function that hides the start screen and shows the questions
+  function hideStartScreen() {
+    getStartScreen.style.display = "none";
+  }
+
+  // function the starts the timer and displays the end screen
+  function startTimer() {
+    let timeLeft = 100;
+    let timeInterval = setInterval(function () {
+      timeLeft--;
+      timer.textContent = timeLeft;
+      if (timeLeft === 0) {
+        clearInterval(timeInterval);
+        displayEndScreen();
+      }
+    }, 1000);
+
+  }
+
+  // function that displays the end screen
+  function displayEndScreen() {
+    getQuestions.style.display = "none";
+    getEndScreen.style.display = "block";
+  }
