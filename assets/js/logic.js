@@ -14,17 +14,17 @@ const getEndScreen = document.getElementById("end-screen");
 const questions = [
   {
     question: "What is the capital of France?",
-    choices: ["London", "Paris", "Berlin", "Madrid"],
+    options: ["London", "Paris", "Berlin", "Madrid"],
     answer: "Paris"
   },
   {
     question: "What is the largest country in the world?",
-    choices: ["Russia", "Canada", "China", "USA"],
+    options: ["Russia", "Canada", "China", "USA"],
     answer: "Russia"
   },
   {
     question: "What is the currency of Japan?",
-    choices: ["Yen", "Dollar", "Euro", "Pound"],
+    options: ["Yen", "Dollar", "Euro", "Pound"],
     answer: "Yen"
   }
 ];
@@ -35,23 +35,25 @@ startQuizButton.addEventListener("click", startQuiz)
 // function that starts the quiz
 function startQuiz() {
   hideStartScreen();
-  showQuestions()
   startTimer();
+  showQuestions();
+
 }
 
-// function that shows the questions and choices on the screen
+// function that displays the questions and options on the screen
 function showQuestions() {
-  getQuestions.style.display = "block";
+  let i = 0;
 
-  for (let i = 0; i < questions.length; i++) {
+  getQuestions.style.display = "block";
+  getChoices.innerHTML = "";
+
+  for (let j = 0; j < questions[i].options.length; j++) {
     getQuestionTitle.textContent = questions[i].question;
 
-    // creates a button for each choice value
-    for (let j = 0; j < questions[i].choices.length; j++) {
-      let choiceButton = document.createElement("button");
-      choiceButton.textContent = questions[i].choices[j];
-      getChoices.appendChild(choiceButton);
-    }
+    var optionButton = document.createElement("button");
+    optionButton.setAttribute("class", "option");
+    optionButton.textContent = questions[i].options[j];
+    getChoices.appendChild(optionButton);
   }
 }
 
@@ -62,7 +64,7 @@ function hideStartScreen() {
 
 // function the starts the timer and displays the end screen
 function startTimer() {
-  let timeLeft = 15;
+  let timeLeft = 100;
   let timeInterval = setInterval(function () {
     timeLeft--;
     timer.textContent = timeLeft;
