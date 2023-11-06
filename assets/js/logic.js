@@ -137,5 +137,8 @@ submitButton.addEventListener("click", function(event) {
     displayMessage("success", "Score saved successfully");
 
     localStorage.setItem("initials", initials);
+
+    // it redirects the user to the scores page
+    window.location.href = "highscores.html";
   }
 });
