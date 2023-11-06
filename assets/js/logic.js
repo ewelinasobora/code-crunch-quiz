@@ -73,7 +73,7 @@ function showQuestions() {
         }
         index++;
         // it resets the choices to ensure that the options for the previous question are not displayed
-        getChoices.innerHTML = "";
+        getChoices.textContent = "";
         // once the user selects an option, the function displayQuestion is called to display the next question
         displayQuestion(index);
       });
@@ -83,27 +83,33 @@ function showQuestions() {
   displayQuestion(questionIndex);
 }
 
-  // function that hides the start screen and shows the questions
-  function hideStartScreen() {
-    getStartScreen.style.display = "none";
-  }
+function displayFinalScore() {
+  let score = localStorage.getItem("score");
+  getFinalScore.textContent = score;
+}
 
-  // function the starts the timer and displays the end screen
-  function startTimer() {
-    let timeLeft = 100;
-    let timeInterval = setInterval(function () {
-      timeLeft--;
-      timer.textContent = timeLeft;
-      if (timeLeft === 0) {
-        clearInterval(timeInterval);
-        displayEndScreen();
-      }
-    }, 1000);
+// function that hides the start screen and shows the questions
+function hideStartScreen() {
+  getStartScreen.style.display = "none";
+}
 
-  }
+// function the starts the timer and displays the end screen
+function startTimer() {
+  let timeLeft = 100;
+  let timeInterval = setInterval(function () {
+    timeLeft--;
+    timer.textContent = timeLeft;
+    if (timeLeft === 0) {
+      clearInterval(timeInterval);
+      displayEndScreen();
+    }
+  }, 1000);
 
-  // function that displays the end screen
-  function displayEndScreen() {
-    getQuestions.style.display = "none";
-    getEndScreen.style.display = "block";
-  }
+}
+
+// function that displays the end screen
+function displayEndScreen() {
+  getQuestions.style.display = "none";
+  getEndScreen.style.display = "block";
+  displayFinalScore()
+}
