@@ -45,6 +45,7 @@ function showQuestions() {
   let score = 0;
   let questionIndex = 0;
 
+
   getQuestions.style.display = "block";
   // function that shows the next question
   function displayQuestion(index) {
@@ -135,19 +136,18 @@ function play(type) {
 
 
 // listener for the submit button
-submitButton.addEventListener("click", function(event) {
+submitButton.addEventListener("click", function (event) {
+  let userData = JSON.parse(localStorage.getItem("userData") || "[]");
   event.preventDefault();
 
   let initials = getInitials.value;
-
   // it checks if the initials are empty
   if (initials === "") {
     displayMessage("error", "Please enter your initials");
   } else {
     displayMessage("success", "Score saved successfully");
-
-    localStorage.setItem("initials", initials);
-
+    userData.push({ initials: initials, score: localStorage.getItem("score") });
+    localStorage.setItem("userData", JSON.stringify(userData));
     // it redirects the user to the scores page
     window.location.href = "highscores.html";
   }
