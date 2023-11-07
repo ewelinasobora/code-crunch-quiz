@@ -17,6 +17,9 @@ You can see this deployed project [here](https://ewelinasobora.github.io/code-cr
 ## Features
 
 ## Technologies Used
+- JavaScript
+- HTML
+- CSS
 
 ## Installation
 
