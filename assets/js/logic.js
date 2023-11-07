@@ -11,23 +11,23 @@ const getInitials = document.getElementById("initials");
 const submitButton = document.getElementById("submit");
 const getEndScreen = document.getElementById("end-screen");
 
-const questions = [
-  {
-    question: "What is the capital of France?",
-    options: ["London", "Paris", "Berlin", "Madrid"],
-    answer: "Paris"
-  },
-  {
-    question: "What is the largest country in the world?",
-    options: ["Russia", "Canada", "China", "USA"],
-    answer: "Russia"
-  },
-  {
-    question: "What is the currency of Japan?",
-    options: ["Yen", "Dollar", "Euro", "Pound"],
-    answer: "Yen"
-  }
-];
+// const questions = [
+//   {
+//     question: "What is the capital of France?",
+//     options: ["London", "Paris", "Berlin", "Madrid"],
+//     answer: "Paris"
+//   },
+//   {
+//     question: "What is the largest country in the world?",
+//     options: ["Russia", "Canada", "China", "USA"],
+//     answer: "Russia"
+//   },
+//   {
+//     question: "What is the currency of Japan?",
+//     options: ["Yen", "Dollar", "Euro", "Pound"],
+//     answer: "Yen"
+//   }
+// ];
 
 // event listener that starts the quiz
 startQuizButton.addEventListener("click", startQuiz)
@@ -50,26 +50,26 @@ function showQuestions() {
   // function that shows the next question
   function displayQuestion(index) {
     // it checks if there are no more questions to display
-    if (index >= questions.length) {
+    if (index >= questionary.length) {
       displayEndScreen();
       return;
     }
     // it displays the current question
-    getQuestionTitle.textContent = questions[index].question;
+    getQuestionTitle.textContent = questionary[index].question;
 
-    for (let j = 0; j < questions[index].options.length; j++) {
+    for (let j = 0; j < questionary[index].options.length; j++) {
       // it creates a new button element for each option
       let optionButton = document.createElement("button");
       // it sets the 'option' class for each button
       optionButton.setAttribute("class", "option");
       // it sets the text content for each button
-      optionButton.textContent = questions[index].options[j];
+      optionButton.textContent = questionary[index].options[j];
       // it appends the button to the choices div
       getChoices.appendChild(optionButton);
 
       // it listens for a click event on the option button
       optionButton.addEventListener("click", function () {
-        if (questions[index].options[j] === questions[index].answer) {
+        if (questionary[index].options[j] === questionary[index].answer) {
           displayMessage("correct", "Correct!")
           score++;
           localStorage.setItem("score", score);
