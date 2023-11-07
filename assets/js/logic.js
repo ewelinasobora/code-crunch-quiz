@@ -11,24 +11,6 @@ const getInitials = document.getElementById("initials");
 const submitButton = document.getElementById("submit");
 const getEndScreen = document.getElementById("end-screen");
 
-// const questions = [
-//   {
-//     question: "What is the capital of France?",
-//     options: ["London", "Paris", "Berlin", "Madrid"],
-//     answer: "Paris"
-//   },
-//   {
-//     question: "What is the largest country in the world?",
-//     options: ["Russia", "Canada", "China", "USA"],
-//     answer: "Russia"
-//   },
-//   {
-//     question: "What is the currency of Japan?",
-//     options: ["Yen", "Dollar", "Euro", "Pound"],
-//     answer: "Yen"
-//   }
-// ];
-
 // event listener that starts the quiz
 startQuizButton.addEventListener("click", startQuiz)
 

@@ -16,7 +16,14 @@ You can see this deployed project [here](https://ewelinasobora.github.io/code-cr
 
 ## Features
 
+- Users can take quiz, and upon completion, their scores will be recorded.
+
+- Scores and user initials are saved in the browser's local storage, allowing users to retrieve their quiz history even after closing the app.
+
+- Users are notified by sound, when either their answers are correct or wrong.
+
 ## Technologies Used
+
 - JavaScript
 - HTML
 - CSS
@@ -25,7 +32,7 @@ You can see this deployed project [here](https://ewelinasobora.github.io/code-cr
 
 Clone the repository:
 
-  ```
+  ```markdownlint
    git clone git@github.com:ewelinasobora/code-crunch-quiz.git
   ```
 
