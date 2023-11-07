@@ -107,6 +107,8 @@ function startTimer() {
     if (timeLeft === 0) {
       clearInterval(timeInterval);
       displayEndScreen();
+    } else if (getEndScreen.style.display === "block") {
+      clearInterval(timeInterval);
     }
   }, 1000);
 
